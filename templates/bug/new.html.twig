@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Bug{% endblock %}
+
+{% block body %}
+<section class="newBugSection">
+    <div class="container">
+        <div class="row">
+            <div class="col s12 margin-2vw">
+                <div class="card padding-2vw">
+                    <div class="card-title">
+                        <h5>Ajout d'une constation de bug</h5>
+                    </div>
+                    <div class="card-content">
+                        {{ include('bug/_form.html.twig') }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+    <a href="{{ path('bug_index') }}"><i class="material-icons">chevron_left</i></a>
+{% endblock %}

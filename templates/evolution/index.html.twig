@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Vetixy | Suggestions{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row margin-2vw">
+            <div class="col s12 m8 offset-m2">
+                    <div class="card padding-1vw">
+                        <div class="card-content">
+                            <h6>
+                                Des fonctionnalités supplémentaires à proposer? C'est ici!
+                            </h6>
+                        </div>
+                        <div class="card-action">
+                            {% if app.user %}
+                                <p>
+                                    Afin de nous proposer une amélioration, appuyer sur le bouton.
+                                    <span style="float:right;"><a href="{{ path('evolution_new') }}" class="btn-floating waves-effect waves-light cyan darken-2"><i class="material-icons">add</i></a></span>
+                                </p>
+                            {% else %}
+                                <p>Afin de nous proposer un amélioration de l'application, merci de vous connecter.
+                                    <a href="{{ path('app_login') }}" class="btn cyan darken-2 right">connexion</a></p>
+                            {% endif %}
+                        </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-container">
+            <HR size=2 align=center width="100%">
+            <div class="row row-evolution">
+                {% for evolution in evolutions %}
+                    <div class="col s12 m6 col-evolution">
+                        <div class="card margin-2vw">
+                            <div class="card-content">
+                                <div class="card-title">
+                                    <a href="{{ path('evolution_show', {id: evolution.id, slug: evolution.slug}) }}"><h5 class="h5-index">{{ evolution.name|length > 100 ? evolution.description|slice(0, 50) ~ '...' : evolution.name }}</h5></a>
+                                </div>
+                                <div class="card-body" style="margin-bot: 50px">
+                                    <p>{{ evolution.description|length > 150 ? evolution.description|slice(0, 150) ~ '...' : evolution.description  }}</p>
+                                </div>
+                                <div class="card-action">
+                                    <p>
+                                        <i class="material-icons">thumb_up</i> {{ evolution.vote.likes }} <i class="material-icons">thumb_down</i> {{ evolution.vote.dislikes }}
+                                        <span style="float: right"><a href="{{ path('evolution_show', {id: evolution.id, slug: evolution.slug}) }}" class="btn-floating cyan darken-2"><i class="material-icons">add</i></a></span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="pagination right-align">
+            {{ knp_pagination_render(evolutions) }}
+        </div>
+
+    </div>
+{% endblock %}

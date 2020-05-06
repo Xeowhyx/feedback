@@ -1,0 +1,158 @@
+easy_admin:
+  site_name: 'Feedback Admin'
+
+
+
+  entities:
+    Bugs:
+      class: App\Entity\Bug
+
+
+      form:
+        fields:
+          - name
+          - description
+          - { property: os, type: 'App\Form\OsType'}
+          - { property: location, type: 'App\Form\LocationType' }
+          - { property: state, type: 'App\Form\StateType' }
+          - { property: priority, type: 'App\Form\PriorityType' }
+          - { property: severity, type: 'App\Form\SeverityType' }
+
+
+
+      list:
+        title: 'Liste des bugs'
+        actions: ['show']
+        fields:
+          - name
+          - description
+          - { property: os.name,label : Os}
+          - { property: location.name,label : Location}
+          - { property: priority.name,label : Priority}
+          - { property: severity.name,label : Severity}
+          - { property: state.name, label : State }
+
+
+
+
+
+
+
+
+    Evolution:
+      class: App\Entity\Evolution
+
+      form:
+        fields: ['name', 'description']
+      list:
+        title: 'Liste des évolutions'
+
+    Commentbug:
+      class: App\Entity\Comments
+      list:
+        title: 'Liste des commentaires'
+        dql_filter: "entity.bug>1"
+
+    Commentevolution:
+      class: App\Entity\Comments
+      list:
+        title: 'Liste des commentaires'
+        dql_filter: "entity.evolution>1"
+
+
+
+
+
+    User:
+      class: App\Entity\User
+      form:
+        fields: ['email','password']
+      list:
+        title: 'Liste des utilisateurs'
+
+    Vote:
+      class: App\Entity\Vote
+      list:
+        title: 'Liste des votes'
+
+    Priority:
+      class: App\Entity\Priority
+      form:
+        fields: ['name']
+      list:
+        title: 'Liste des Priorités'
+
+    State:
+      class: App\Entity\State
+      form:
+        fields: ['name']
+      list:
+        title: 'Liste des différents états'
+
+    Severity:
+      class: App\Entity\Severity
+      form:
+        fields: ['name']
+      list:
+        title: 'Liste des sévérités'
+    Os:
+      class: App\Entity\Os
+      form:
+        fields: ['name']
+      list:
+          title: 'Liste des OS'
+
+    Location:
+      class: App\Entity\Location
+      form:
+        fields: ['name']
+      list:
+        title: 'Liste des Onglets'
+
+
+
+  design:
+    brand_color: '#033f4d'
+    assets:
+      css:
+        - 'css/admin.css'
+    menu:
+      - { entity: 'User', label: 'Users',icon: 'user' }
+      - label: 'Gestion des Bugs'
+        icon: 'cog'
+        children:
+          - {entity : 'Bugs', label : Bug }
+          - {entity: 'Commentbug',label: Commentaire }
+
+      - label: 'Gestion des evolutions'
+        icon: 'globe'
+        children:
+          - Evolution
+          - {entity: 'Commentevolution',label: Commentaire }
+          - Vote
+      - label: 'Gestion des tâches'
+        icon: 'suitcase'
+        children:
+          - Priority
+          - Severity
+          - State
+          - Os
+          - Location
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,124 @@
+body {
+    font-family: Roboto, Arial, Helvetica, sans-serif;
+    background-color: rgba(170,211,211, 0.6);
+
+}
+
+h1 {
+    display: block;
+    font-size: 3em;
+}
+
+.bleuCanard {
+    background-color: #048b9a;
+}
+
+div.reseaux {
+    display: inline-flex;
+    vertical-align: middle;
+    text-decoration: none;
+}
+
+a.connect {
+    color: white;
+}
+
+.user-title {
+    color: rgba(200, 200, 200, 1);
+    flex: auto;
+}
+
+.margin-2vw {
+    margin: 2vw;
+}
+
+.padding-2vw {
+      padding: 2vw;
+}
+
+.padding-1vw {
+    padding: 1vw;
+}
+
+.comment-description {
+    height: 170px;
+}
+
+.name-type {
+    margin-bottom: 2vw;
+}
+
+.description-evolution-type {
+    height: 500px;
+    margin-bottom: 2vw;
+}
+
+.description-bug-type {
+    height: 300px;
+    margin-bottom: 2vw;
+}
+
+
+
+.row-evolution {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display:         flex;
+    flex-wrap: wrap;
+}
+.row-evolution > [class*='col-evolution-'] {
+    display: flex;
+    flex-direction: column;
+}
+
+.btn-edit{
+    position:absolute;
+    top:0;
+    right:0;
+    margin: 2vw;
+}
+
+.pagination li.active {
+    background-color: #048b9a !important;
+}
+
+#el{
+    width: 50%;
+}
+
+.h5-index {
+    color: #048b9a;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+table.table-bug {
+    width: 100%;
+    border-collapse: collapse;
+    overflow-x: auto;
+}
+
+table.table-bug tr td {
+    font-size: 14px;
+}
+
+.img-vetixy-logo {
+    max-height: 52px;
+    height: auto;
+    width: auto;
+    margin-top: 7px;
+}
+
+.img-vetixy-app-photo {
+    max-height: 500px;
+    height: auto;
+    width: auto;
+    position: relative;
+}

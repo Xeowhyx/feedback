@@ -1,0 +1,69 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Evolution{% endblock %}
+
+{% block body %}
+    <div class="container ">
+        <section class="margin-2vw">
+            <div class="row">
+                <div class="col s12 m8">
+                    <div class="card">
+                        <div class="card-content">
+                            <span><h5>{{ evolution.name }} <small class="user-title"> - {{ evolution.userEvolution.email }}</small></h5></span>
+                            <p>{{ evolution.description | nl2br }}</p>
+                        </div>
+                        <div class="card-action">
+                            {% if app.user %}
+                                {{ form_start(voteForm) }}
+                                <p>
+                                    {% if app.user.id == evolution.userEvolution.id %}
+                                        <a class="btn btn cyan darken-2" href="{{ path('evolution_edit', {'id': evolution.id}) }}">Editer</a>
+                                    {% endif %}
+                                    <span style="float: right">
+                                        <button name='likeButton' value="likeButton" type="submit" class="btn-floating cyan darken-2"><i class="material-icons">thumb_up</i></button>&nbsp;{{ vote.likes }}&nbsp;&nbsp;
+                                        <button name="dislikeButton" value="dislikeButton" type="submit" class="btn-floating cyan darken-2"><i class="material-icons">thumb_down</i></button>&nbsp;{{ vote.dislikes }}
+                                    </span>
+                                </p>
+                                {{ form_end(voteForm) }}
+                            {% else %}
+                                <p class="right-align">
+                                    Connecter vous pour pouvoir voter! <br />
+                                    <a href="#" class="btn-floating cyan darken-2"><i class="material-icons">thumb_up</i></a>&nbsp;{{ vote.likes }}&nbsp;&nbsp;
+                                    <a href="#" class="btn-floating cyan darken-2"><i class="material-icons">thumb_down</i></a>&nbsp;{{ vote.dislikes }}
+                                </p>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="margin-2vw" id="commentaires">
+            <div class="row">
+                <div class="col s10 offset-s1">
+                    <div class="card padding-2vw">
+                        <h5>Commentaires</h5>
+                        {% for comments in evolution.comments %}
+                            <HR size=2 align=center width="100%">
+                            <div class="">
+                                <p><b>{{ comments.userComments.email }}</b><small>  -  ({{ comments.getCreated | date('d/m/y à H:i')}})</small><p/>
+                            </div>
+                            <div class="">
+                                <p>{{ comments.commentDesc | raw }}</p>
+                            </div>
+                        {% endfor %}
+                        {% if app.user %}
+                            {{ form_start(commentsForm) }}
+                            {{ form_row(commentsForm.commentDesc) }}
+
+                            <button type="submit" class= "btn cyan darken-2">{{ button_label|default('Commenter') }}</button>
+                            {{ form_end(commentsForm) }}
+                        {% else %}
+                            <h6>Veuillez vous connecter pour commenter</h6>
+                            <a href="{{ path('app_login') }}" class="btn cyan darken-2">Connexion</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+{% endblock %}

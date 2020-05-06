@@ -1,0 +1,76 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Vetixy | Bug{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <section class="margin-2vw">
+            <div class="row ">
+                <div class="col s3">
+                    <div class="card">
+                        <div class="card-content">
+                            <p>
+                                Date d'ouverture du ticket:<br> <b>{{ bug.date | date('d/m/y') }}</b>
+                                <br>
+                                <br>
+                                Emplacement:<br> <b>{{ bug.getLocation.name}}</b>
+                                <br>
+                                <br>
+                                Système d'exploitation:<br> <b>{{ bug.getOs.name }}</b>
+                                <br>
+                                {% if bug.priority %}
+                                    <br>
+                                    Ce bug a été classé en priorité: <br> <b>{{ bug.getPriority.name }}</b>
+                                {% endif %}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row valign-wrapper">
+                    <div class="col s12 offset-s1 ">
+                        <div class="card">
+
+                            <div class="card-content">
+                                <span><h5>{{ bug.name }} <small class="user-title"> - {{ bug.userbug.email }}</small></h5></span>
+                                {% if app.user.id == bug.userbug.id %}
+                                    <div class="card-action">
+                                        <a href="{{ path('bug_edit', {'id': bug.id}) }}" class="btn-floating right waves-effect waves-light cyan darken-2 "><i class="material-icons">create</i></a>
+                                    </div>
+                                {% endif %}
+                                <p>{{ bug.description | nl2br }}</p>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="row valign-wrapper">
+                    <div class="col s12 offset-s1">
+                        <div class="card padding-2vw">
+                            <h5>Commentaires</h5>
+                            {% for comments in bug.comments %}
+                                <HR size=2 align=center width="100%">
+                                <div class="">
+                                    <p><b>{{ comments.userComments.email }}</b><small>  -  ({{ comments.getCreated | date('d/m/y à H:i')}})</small><p/>
+                                </div>
+                                <div class="">
+                                    <p>{{ comments.commentDesc | raw }}</p>
+                                </div>
+                            {% endfor %}
+                            {% if app.user %}
+                                {{ form_start(commentsForm) }}
+                                {{ form_row(commentsForm.commentDesc) }}
+
+                                <button type="submit" class= "btn cyan darken-2">{{ button_label|default('Commenter') }}</button>
+                                {{ form_end(commentsForm) }}
+                            {% else %}
+                                <h6>Veuillez vous connecter pour commenter</h6>
+                                <a href="{{ path('app_login') }}" class="btn cyan darken-2">Connexion</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <a href="{{ path('bug_index') }}"><i class="material-icons">chevron_left</i></a>
+    </div>
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="parallax-container">
+        <div class="parallax"><img src="{{ asset('build/images/cover-vetixy.jpg') }}"></div>
+    </div>
+    <div class="section white">
+        <div class="row container">
+            <div class="row margin-2vw valign-wrapper">
+                <div class="col s12 m3">
+                    <h2 class="header"><a href="{{ asset('build/images/logo-vetixy-white.png.jpg') }}">
+                            <img class="img-vetixy-app-photo left-align" src="{{ asset('build/images/vetixy-application-photo.png') }}">
+                        </a></h2>
+                </div>
+
+                <p class="grey-text text-darken-3 lighten-3">
+                     <b>Ce site à pour vocation d'améliorer l'expérience Vetixy</b> <br>
+                    <br>
+                    <br>
+                    En effet nous sommes à votre écoute afin de régler au plus vite vos dysfonctionnements rencontrés,
+                    mais aussi de déployer si possible vos propositions d'améliorations de l'application <br>
+                    <br>
+                    <br>
+                    Nous vous rappelons que nous ne pouvons pas mettre en place toutes vos idées dans l'immédiat.
+                    <br>
+                    Merci d'être patient, respectueux et altruiste.
+                    <br>
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="parallax-container">
+        <div class="parallax"><img src="{{ asset('build/images/Veterinaire-696x446.jpg') }}"></div>
+    </div>
+
+
+{% endblock %}

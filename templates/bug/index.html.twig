@@ -1,0 +1,101 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Vetixy | Bugs{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col s2">
+                <ul>
+                    <li class="collection-item avatar">
+                        <img src="{{ asset('build/images/vetixy-application-photo.png') }}">
+                    </li>
+                </ul>
+            </div>
+            <div class="col s6 offset-s1 margin-2vw">
+                <div class="card padding-1vw">
+                    <div class="card-content">
+                        <p>Dans cette section vous pouvez nous indiquer les dysfonctionnements que vous avez pu constater lors de l'utilisation
+                            de l'application.</p>
+                        <p>Merci de veiller à vérifier le problème n'est pas déjà répertorié.</p>
+                    </div>
+                    <div class="card-action">
+                        {% if app.user %}
+                            <p>
+                                Afin de nous indiquer un bug, appuyer sur le bouton.
+                                <span style="float:right;"><a href="{{ path('bug_new') }}" class="btn-floating waves-effect waves-light cyan darken-2"><i class="material-icons">add</i></a></span>
+                            </p>
+                        {% else %}
+                            <p>Afin de nous indiquer un bug, merci de vous connecter.
+                                <a href="{{ path('app_login') }}" class="btn cyan darken-2 right">connexion</a></p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            <div class="col s8 offset-s1">
+                <div class="card">
+                    {{ form_start(form) }}
+                    <div class="card-content">
+                        <div class="row">
+                            <div class="col s12 m6 actions">
+                                {{ form_row(form.name) }}
+                                {{ form_row(form.orderby) }}
+                                {{ form_row(form.os) }}
+                                {{ form_row(form.severity) }}
+                            </div>
+                            <div class="col s12 m6 actions">
+                                {{ form_row(form.location) }}
+                                {{ form_row(form.priority) }}
+                                {{ form_row(form.state) }}
+                                <button class="btn btn-primary cyan darken-2">Rechercher</button>
+                            </div>
+                        </div>
+                    </div>
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+        <div class="row valign-wrapper">
+            <div class="col s12 offset-s1">
+                <div class="card">
+                    <table class="table-bug striped">
+                        <thead>
+                        <tr>
+                            <th>Date d'ouverture</th>
+                            <th>Emplacement</th>
+                            <th>Système </br>d'exploitation</th>
+                            <th>Etat</th>
+                            <th>Titre</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for bug in bugs %}
+                            <tr>
+                                <td href="{{ path('bug_show', {id: bug.id, slug: bug.slug})}}">{{ bug.date | date('d/m/y') }}</td>
+                                <td>{{ bug.getLocation.name}}</td>
+                                <td>{{ bug.getOs.name}}</td>
+                                <td>{{ bug.getState.name}}</td>
+                                <td>
+                                    <a href="{{ path('bug_show', {id: bug.id, slug: bug.slug})}}">{{ bug.name|length > 25 ? bug.name|slice(0, 28) ~ '...' : bug.name }}</a>
+                                </td>
+                            </tr>
+                        {% else %}
+                            <tr>
+                                <td colspan="3">no records found</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+        <div class="pagination right-align">
+            {{ knp_pagination_render(bugs) }}
+        </div>
+    </div>
+
+{% endblock %}
+{% block javascripts %}
+
+{% endblock %}

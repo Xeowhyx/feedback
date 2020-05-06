@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Vetixy | Evolution edit{% endblock %}
+
+{% block body %}
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col s8 margin-2vw">
+                    <div class="card padding-2vw">
+                        <div class="card-title">
+                            <h5>Editer votre suggestion</h5>
+                        </div>
+                        <div class="card-text">
+                            {{ include('evolution/_form.html.twig', {'button_label': 'Update'}) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

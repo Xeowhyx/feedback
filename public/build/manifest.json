@@ -1,0 +1,15 @@
+{
+  "build/app.css": "/build/app.css",
+  "build/app.js": "/build/app.js",
+  "build/jquery.js": "/build/jquery.js",
+  "build/materialize.css": "/build/materialize.css",
+  "build/materialize.js": "/build/materialize.js",
+  "build/runtime.js": "/build/runtime.js",
+  "build/vendors~app~materialize.js": "/build/vendors~app~materialize.js",
+  "build/images/0.jpeg": "/build/images/0.jpeg",
+  "build/images/Veterinaire-696x446.jpg": "/build/images/Veterinaire-696x446.jpg",
+  "build/images/cover-vetixy.jpg": "/build/images/cover-vetixy.jpg",
+  "build/images/index.jpeg": "/build/images/index.jpeg",
+  "build/images/logo-vetixy-white.png": "/build/images/logo-vetixy-white.png",
+  "build/images/vetixy-application-photo.png": "/build/images/vetixy-application-photo.png"
+}
